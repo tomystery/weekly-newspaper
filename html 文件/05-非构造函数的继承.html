@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /* 一、object方法 */
+    /* function object(o) {
+        function F() { }
+        F.prototype = o;
+        return new F();
+    }
+
+    var Chinese = {
+        nation: '中国'
+    };
+
+    var Doctor = {
+        career: '医生'
+    }
+
+    var Doctor = object(Chinese);
+    console.log(Doctor);
+
+    Doctor.career = '医生'; */
+
+
+    /* 二、浅拷贝 */
+
+    var Chinese = {
+        nation: '中国'
+    };
+    Chinese.birthPlaces = ['北京', '上海', '香港'];
+
+    var Doctor = {
+        career: '医生'
+    }
+    function extendCopy(p) {
+        var c = {};
+        for (var i in p) {
+            console.log(p[i]);
+            c[i] = p[i];
+
+        }
+
+        c.uber = p;
+        return c;
+    }
+    //use:
+    var Doctor = extendCopy(Chinese);
+
+    Doctor.career = '医生';
+
+    //添加一个进去 发现下面两个都变了
+    Doctor.birthPlaces.push('厦门');
+
+   console.log(Doctor.birthPlaces) 
+   console.log(Chinese.birthPlaces)
+    /* 但是，这样的拷贝有一个问题。那就是，如果父对象的属性等于数组或另一个对象，那么实际上，子对象获得的只是一个内存地址，而不是真正拷贝，因此存在父对象被篡改的可能。
+请看，现在给Chinese添加一个"出生地"属性，它的值是一个数组。 */
+
+
+</script>
+
+</html>

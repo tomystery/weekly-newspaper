@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //------正则实例对象的exec方法，用  来返回匹配结果。如果发现匹配，就返回一个数组，成员是匹配成功的子字符串，否则返回null。
+    /* var s = '_x_x';
+    var r1 = /x/;
+    var r2 = /y/;
+
+    console.log(r1.exec(s)) // ["x"]
+    console.log(r2.exec(s))//null */
+
+    //--------组匹配（）
+    var s = 'x_x-x_x_x-x';
+    var r = /_(x)(-)/;
+
+    console.log(r.exec(s));//['_x-','x','-']
+
+    /* var r = /a(b+)a/;
+    var arr = r.exec('_abbba_aba_aba');
+
+   console.log(arr)  // ["abbba", "bbb"] */
+
+   
+
+</script>
+
+</html>

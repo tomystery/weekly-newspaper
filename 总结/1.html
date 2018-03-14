@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*  function DOG(name) {
+ 
+         this.name = name;
+ 
+     }
+ 
+     DOG.prototype = { species: '犬科' };
+ 
+ 
+     var dogA = new DOG('大毛');
+ 
+     var dogB = new DOG('二毛');
+ 
+     console.log(dogA); */
+
+
+    //2.封装---------------------
+
+    //2.1原始模式改进
+    /* function Cat(name, color) {
+        　　　　return {
+            　　　　　　name: name,
+            　　　　　　color: color
+        　　　　}
+    　　}
+
+    　var cat1 = Cat("大毛", "黄色");
+    　var cat2 = Cat("二毛", "黑色");
+    console.log(cat1);
+    console.log(cat2); */
+
+    //2.2 构造函数模式
+
+    /*为了解决从原型对象生成实例的问题，Javascript提供了一个构造函数（Constructor）模式。
+    所谓"构造函数"，其实就是一个普通函数，但是内部使用了this变量。对构造函数使用new运算符，就能生成实例，并且this变量会绑定在实例对象上。*/
+    /* function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    var cat1 = new Cat("大毛", "黄色");
+    var cat2 = new Cat("二毛", "黑色");
+    console.log(cat1);
+    console.log(cat2); */
+    //--------------------2.封装
+
+
+    //3.继承----------------------
+    /*  对象之间继承的5种方法 */
+    //3.1构造函数绑定
+    /* function Animal() {
+        this.species = "动物";
+    }
+
+
+    function Cat(name, color) {
+
+        　　　　Animal.apply(this, arguments);
+
+        　　　　this.name = name;
+
+        　　　　this.color = color;
+
+    　　}
+
+    　　var cat1 = new Cat("大毛", "黄色");
+    console.log(cat1); */
+
+    //3.2 prototype模式
+    /* function Animal() {
+        this.species = "动物";
+    }
+
+    function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    Cat.prototype = new Animal();
+
+    Cat.prototype.constructor = Cat;
+
+    var cat1 = new Cat("大毛", "黄色");
+    console.log(cat1); */
+
+    //3.3 直接继承prototype
+
+    /* function Animal() { }
+
+    Animal.prototype.species = "动物";
+    Cat.prototype = Animal.prototype;
+
+    Cat.prototype.constructor = Cat;
+
+    var cat1 = new Cat("大毛", "黄色"); */
+    //这样做法的缺点，使得Animal也会继承了cat的constructor
+
+
+    //3.4 利用空对象作为中介
+    /* function Animal() {}
+    Animal.prototype.species = "动物";
+
+    function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    var F = function () { };
+
+    F.prototype = Animal.prototype;
+
+
+    Cat.prototype = new F();
+    console.log( Cat.prototype)
+
+    Cat.prototype.constructor = Cat; */
+
+
+    // -----将上面的方法封装为一个函数，便于使用------
+    /* function Animal() { }
+    Animal.prototype.species = "动物";
+
+    function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    function extend(Child, Parent) {
+
+        var F = function () { };
+
+        F.prototype = Parent.prototype;
+
+        Child.prototype = new F();
+
+        Child.prototype.constructor = Child;
+
+        Child.uber = Parent.prototype;
+
+    }
+
+    extend(Cat, Animal);
+
+    var cat1 = new Cat("大毛", "黄色");
+
+    alert(cat1.species); // 动物 */
+
+
+    //3.5 拷贝继承
+    function Animal() { }
+    Animal.prototype.species = "动物";
+
+    function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+
+
+
+    function extend2(Child, Parent) {
+
+        var p = Parent.prototype;
+
+        var c = Child.prototype;
+
+        for (var i in p) {
+
+            c[i] = p[i];
+
+
+        }
+
+        c.uber = p;
+
+    }
+
+    extend2(Cat, Animal);
+
+    var cat1 = new Cat("大毛", "黄色");
+    console.log(cat1);
+    console.log(cat1.species);
+
+    //--------------------------3.继承
+</script>
+
+</html>

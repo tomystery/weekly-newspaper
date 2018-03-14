@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   /*  只要递归调用"浅拷贝"就行了 */
+
+//    目前jq使用的方法
+function deepCopy(p,c){
+    var c=c|{};
+
+    for(var i in p){
+        if(typeof p[i]==='object'){
+            c[i]=(p[i].constructor===Array)?[]:{};
+            deepCopy(p[i],c[i]);
+        }
+    }
+}
+</script>
+</html>

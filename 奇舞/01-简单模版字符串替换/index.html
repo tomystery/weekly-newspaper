@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //二月童鞋：
+
+    /* let str = "{{name}}很厉害，才{{age}}岁"
+
+    let obj = { name: '二月', age: 15 }
+
+    function test(str, obj) {
+
+
+        let _s = str.replace(/\{\{(\w+)\}\}/g, '$1')//匹配成功第一组内容
+        console.log(_s); //name很厉害，才age岁
+
+        let result
+
+        for (let k in obj) {
+
+            _s = _s.replace(new RegExp(k, 'g'), obj[k])
+            console.log(_s);
+            
+        }
+
+        return _s
+    }
+    const s = test(str, obj) */
+
+
+
+
+
+
+
+    //志钦童鞋：
+    /* var str = "{{name}}很厉害，才{{age}}岁";
+
+    var str2 = "{{name}}很厉name害，才{{age}}岁{{name}}";
+
+    var obj = { name: '周杰伦', age: 15 };
+
+    function fun(str, obj) {
+
+        var arr;
+
+        arr = str.match(/{{[a-zA-Z\d]+}}/g);
+
+
+        for (var i = 0; i < arr.length; i++) {
+
+            arr[i] = arr[i].replace(/{{|}}/g, '');
+            console.log(arr[i]);
+
+            str = str.replace('{{' + arr[i] + '}}', obj[arr[i]]);
+
+        }
+
+        return str;
+
+    }
+
+    console.log(fun(str, obj));
+
+    console.log(fun(str2, obj)); */
+
+
+
+
+    //小维童鞋：
+    /* function a(str, obj) {
+
+        var str1 = str;
+
+        for (var key in obj) {
+
+            var re = new RegExp("{{" + key + "}}", "g");
+
+            str1 = str1.replace(re, obj[key]);
+
+        }
+
+        console.log(str1);
+
+    }
+
+    const str = "{{name}}很厉name害{{name}}，才{{age}}岁";
+
+    const obj = { name: "jawil", age: "15" };
+
+    a(str, obj); */
+
+
+
+    //我的实现：
+    function parseString(str, obj) {
+        console.log(Object.keys(obj))
+        Object.keys(obj).forEach(key => {
+
+            str = str.replace(new RegExp(`{{${key}}}`, 'g'), obj[key]);
+
+        });
+
+        return str;
+
+    }
+
+    const str = "{{name}}很厉name害{{name}}，才{{age}}岁";
+
+    const obj = { name: "jawil", age: "15" };
+
+    console.log(parseString(str, obj));
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    
+//----------
+    var r = /abc\{/igm;
+    console.log(r.lastIndex)  // 0
+    console.log(r.source)   //返回正则表达式的字符串形式（不包括反斜杠）
+
+
+//----如果正则表达式带有g修饰符，则每一次test方法都从上一次结束的位置开始向后匹配。
+var r = /x/g;
+var s = '_x_x';
+
+console.log(r.lastIndex) // 0
+r.test(s) // true
+
+console.log(r.lastIndex) // 2
+r.test(s) // true
+
+console.log(r.lastIndex) // 4
+r.test(s) // false
+
+//---------带有g修饰符时，可以通过正则对象的lastIndex属性指定开始搜索的位置
+var r = /x/g;
+var s = '_x_x';
+
+r.lastIndex = 4;
+r.test(s)
+</script>
+
+</html>
